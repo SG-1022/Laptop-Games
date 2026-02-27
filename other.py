@@ -1,18 +1,23 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, session
 import random
+import os
 
 app = Flask(__name__)
 
+app.secret_key = os.urandom(24)
+
 @app.route('/', methods=['GET', 'POST'])
 def guess_game():
-    secret_number = random.randint(0, 9)
+    if 'secret_number' not in session:
+        session['secret_number'] = random.randint(0, 9)
 
-    print(f"The secret number is: {secret_number}")
+    secret_number = session['secret_number']
+
 
     other = True
     message = '<h1>Guess a number between 0 and 9</h1><img src=https://media.giphy.com/media/3o7aCSPqXE5C6T8tBC/giphy.gif>'
 
-    if request.method == 'GET':
+    if request.method == 'POST':
         user_guess = request.form.get('user_input', type=int)
 
         if user_guess == secret_number:
@@ -33,6 +38,6 @@ def guess_game():
     return render_template('index.html', output_val=message, a=other)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()
 
 

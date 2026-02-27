@@ -8,8 +8,12 @@ app.secret_key = os.urandom(24)
 
 @app.route('/', methods=['GET', 'POST'])
 def guess_game():
+    a = 0
     if 'secret_number' not in session:
+
         session['secret_number'] = random.randint(0, 9)
+        while a == session['secret_number']:
+            session['secret_number'] = random.randint(0, 9)
 
     secret_number = session['secret_number']
 

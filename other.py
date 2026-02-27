@@ -23,6 +23,7 @@ def guess_game():
         if user_guess == secret_number:
             other = False
             message = '<h1 style="color:green;">You found me!</h1><img src="https://media.giphy.com/media/4T7e4DmcrP9du/giphy.gif">'
+            session.pop('secret_number')
         elif user_guess is not None:
             other = True
             if user_guess < secret_number:

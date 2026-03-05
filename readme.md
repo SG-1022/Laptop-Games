@@ -1,3 +1,3 @@
-**Number Guessing Game**
+**Gamesite**
 
-This game is simple. All it requires you to do is to guess a number. Have fun.
+This gamesite is simple. It has simple games.

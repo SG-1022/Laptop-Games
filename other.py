@@ -2,11 +2,19 @@ from flask import Flask, render_template, request, session
 import random
 import os
 
+# TODO - Make a Footer and Navbar
+# TODO - Make the website look like a website.
+# TODO - Make the website runnable.
+
 app = Flask(__name__)
 
 app.secret_key = os.urandom(24)
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/')
+def home_page():
+    return render_template('home_page.html')
+
+@app.route('/number_guessing_game', methods=['GET', 'POST'])
 def guess_game():
     a = 0
     if 'secret_number' not in session:
@@ -40,7 +48,7 @@ def guess_game():
             other = True
             message = '<h1>Guess a number between 0 and 9</h1><img src=https://media.giphy.com/media/3o7aCSPqXE5C6T8tBC/giphy.gif>'
 
-    return render_template('index.html', output_val=message, a=other)
+    return render_template('number_guessing_game.html', output_val=message, a=other)
 
 if __name__ == '__main__':
     app.run()

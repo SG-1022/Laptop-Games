@@ -50,6 +50,10 @@ def guess_game():
 
     return render_template('number_guessing_game.html', output_val=message, a=other)
 
+@app.route('/Snake-Game')
+def Snake_Game():
+    return render_template('snake_game.html')
+
 if __name__ == '__main__':
     app.run()
 
